@@ -1,0 +1,59 @@
+<!DOCTYPE html />
+<html>
+    <head>
+        <title>Pet Store</title>
+        <link rel="stylesheet" href="style.css" />
+        
+        <script>
+            function adoptArnold() {
+                window.location.href = 'full-form.html';
+            }
+
+            function adoptLucy() {
+                window.location.href = 'full-form.html';
+            }
+
+            function handleOnMouseOver(id) {
+                let element = document.getElementById(id);
+                element.setAttribute("style", "background-color: blue;");
+            }
+
+            function handleOnMouseOut(id) {
+                let element = document.getElementById(id);
+                element.setAttribute("style", "background-color: none;");
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Welcome To Our Pet Store</h1>
+        <p id="welcome-message">Have a look around!</p>
+        <section>
+            <img src="dog.jpeg" style="max-width: 300px;"/>
+            <p id="arnold-text">Arnold</p>
+            <button
+                id="arnold-button"
+                class="pet-adopt-button"
+                onmouseover="handleOnMouseOver('arnold-button');"
+                onmouseout="handleOnMouseOut('arnold-button');"
+            >Adopt Me!</button>
+
+            <!-- Event Listener Example -->
+            <script>
+                let petBtnElementForListener = document.getElementById("arnold-button");
+                petBtnElementForListener.addEventListener('click', adoptArnold);
+            </script>
+        </section>
+        <br />
+        <section>
+            <img src="cat.png" style="max-width: 300px;"/>
+            <p id="lucy-text">Lucy</p>
+            <button
+                id="lucy-button"
+                class="pet-adopt-button"
+                onclick="adoptLucy()"
+                onmouseover="handleOnMouseOver('lucy-button');"
+                onmouseout="handleOnMouseOut('lucy-button');"
+            >Adopt Me!</button>
+        </section>
+    </body>
+</html>

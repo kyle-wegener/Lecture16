@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Adopt This Pet</title>
+        <script>
+            window.addEventListener('load', function() {
+                // You can also use getElementById (we used query selector for an example)
+                const submitElement = document.querySelector('form');
+                submitElement.addEventListener('submit', function() {
+                    let name = document.getElementById('ownerName');
+                    let email = document.getElementById('ownerEmail');
+                    if (name.value === '' || email.value === '') {
+                        alert("Name and email are required!");
+
+                        // Prevents the submission from continuing
+                        event.preventDefault();
+                        return;
+                    }
+                    let housingOptions = document.getElementsByName('housing');
+                    let checkedHousingOption = undefined;
+                    for (let i = 0; i < housingOptions.length; i++) {
+                        if (housingOptions[i].checked) {
+                            checkedHousingOption = housingOptions[i];
+                        }
+                    }
+                    if (checkedHousingOption === undefined) {
+                        alert('You need to select a housing option!');
+
+                        // Prevents the submission from continuing
+                        event.preventDefault();
+                        return;
+                    }
+                    alert(`Thank you for your submission ${name.value}!`);
+                    window.location.href = 'index.html';
+
+                    // Prevents the submission from continuing
+                    // Without this here, we will not be able to navigate back to full-index.html
+                    // this is because the default action is to navigate back to the same (but blank) page (full-form.html)
+                    event.preventDefault();
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <h1>Adopt This Pet</h1>
+        <p>We need to know some information about you.</p>
+        <form action="" method="POST">
+            <div>
+                <label>Your Name: <input type="text" name="ownerName" id="ownerName" /></label>
+            </div>
+            <br />
+            <div>
+                <label>Your Email: <input type="email" name="ownerEmail" id="ownerEmail" /></label>
+            </div>
+            <br />
+            <div>
+                <label>Housing:</label>
+                <input type="radio" name="housing" value="House"><label>House</label>
+                <input type="radio" name="housing" value="Apartment" /><label>Apartment</label>
+            </div>
+            <br />
+            <div>
+                <label>Pet Type:</label>
+                <select name="petType">
+                    <option value="dog">Dog</option>
+                    <option value="cat">Cat</option>
+                    <option value="parrot">Parrot</option>
+                </select>
+            </div>
+            <br />
+            <div>
+                <label>Why should you get this pet?</label>
+                <textarea name="details"></textarea>
+            </div>
+            
+            <br />
+            <div>
+                <button name="submit" id="submit">Submit</button>
+            </div>
+        </form>
+    </body>
+</html>
