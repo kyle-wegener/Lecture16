@@ -2,26 +2,78 @@
 <html>
     <head>
         <title>Adopt This Pet</title>
+        <script>
+            window.addEventListener('load', function() {
+                const submitBtn = document.getElementById('submit');
+                submitBtn.addEventListener('click', function() {
+                    event.preventDefault();
+                    const nameElement = document.getElementById('ownerName');
+                    if (nameElement.value == '') {
+                        alert('Name is required!');
+                        event.preventDefault();
+                        return;
+                    }
+                    const housingOptions = document.getElementsByName('housing');
+                    let selectedOption = undefined;
+                    for (let i = 0; i < housingOptions.length; i++) {
+                        if (housingOptions[i].checked) {
+                            selectedOption = housingOptions[i];
+                            break;
+                        }
+                    }
+                    if (selectedOption === undefined) {
+                        alert('Housing type is required!');
+                        event.preventDefault();
+                        return;
+                    }
+                    alert(`You submitted it ${nameElement.value}!`);
+                    
+                    
+                    
+                });
+            });
+        </script>
     </head>
     <body>
         <h1>Adopt This Pet</h1>
         <p>We need to know some information about you.</p>
-        <div> <!-- Name -->
-        </div>
-        <br />
-        <div> <!-- Email -->
-        </div>
-        <br />
-        <div> <!-- Housing -->
-        </div>
-        <br />
-        <div> <!-- Pet Type -->
-        </div>
-        <br />
-        <div> <!-- Details -->
-        </div>
-        <br />
-        <div> <!-- Submit -->
-        </div>
+        <form action="" method="POST">
+            <div> <!-- Name -->
+                <label>
+                    Name:
+                    <input type="text" name="ownerName" id="ownerName" />
+                </label>
+            </div>
+            <br />
+            <div> <!-- Email -->
+                <label>Email:</label><input type="email" name="ownerEmail" id="ownerEmail" />
+            </div>
+            <br />
+            <div> <!-- Housing -->
+                <label>Housing:</label>
+                <input type="radio" value="apartment" name="housing" id="option1" />
+                <label>Apartment</label>
+                <input type="radio" value="house" name="housing" id="option2" />
+                <label>House</label>
+            </div>
+            <br />
+            <div> <!-- Pet Type -->
+                <label>WHat Pet Type:</label>
+                <select name="petType" id="petType">
+                    <option value="dog" >Dog</option>
+                    <option value="cat" >Cat</option>
+                    <option value="parrot" >Parrot</option>
+                </select>
+            </div>
+            <br />
+            <div> <!-- Details -->
+                <label>Why should you be able to adopt:</label>
+                <textarea name="details" id="details"></textarea>
+            </div>
+            <br />
+            <div> <!-- Submit -->
+                <input type="submit" value="Send It!" id="submit" />
+            </div>
+        </form>
     </body>
 </html>
